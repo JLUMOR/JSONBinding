@@ -16,16 +16,17 @@ sap.ui.define([
         
             var sPath = "/Products/0";
         
+            oView.byId("panel3").bindElement({
+                path: sPath,
+                model: "ProductsModel"
+            });
+
             // Bind both panels to the same product path
             oView.byId("panel2").bindElement({
                 path: sPath,
                 model: "ProductsModel"
             });
         
-            oView.byId("panel3").bindElement({
-                path: sPath,
-                model: "ProductsModel"
-            });
         
             // The rest of your non-product-related data
             var oData = {
