@@ -11,13 +11,23 @@ sap.ui.define([
         formatter: formatter,
 
         onInit: function () {
-            var oProductsModel = this.getView().getModel("ProductsModel");
-
-            this.getView().byId("panel2").bindElement({
-                path: "/Products/0",
+            var oView = this.getView();
+            var oProductsModel = oView.getModel("ProductsModel");
+        
+            var sPath = "/Products/0";
+        
+            // Bind both panels to the same product path
+            oView.byId("panel2").bindElement({
+                path: sPath,
                 model: "ProductsModel"
             });
-
+        
+            oView.byId("panel3").bindElement({
+                path: sPath,
+                model: "ProductsModel"
+            });
+        
+            // The rest of your non-product-related data
             var oData = {
                 Eid: "john.angelo.lumor",
                 Enabled: true,
@@ -30,18 +40,10 @@ sap.ui.define([
                 SalesAmount: 999999,
                 CurrencyCode: "Php"
             };
-
-            var oModel = new JSONModel(oData);
-            this.getView().setModel(oModel); 
-        },
-
-        onProductIdChange: function(oEvent) {
-            var sPath = oEvent.getSource().getBindingContext("ProductsModel").getPath();
-            this.getView().byId("panel3").bindElement({
-                path: sPath,
-                model: "ProductsModel"
-            });
-        }
         
+            var oModel = new JSONModel(oData);
+            oView.setModel(oModel);
+        }        
+
     });
 });

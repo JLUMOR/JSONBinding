@@ -52,14 +52,30 @@
             <content>
                 <sap.ui.layout.form:SimpleForm editable="true" layout="ResponsiveGridLayout" id="form2">
                     <sap.ui.layout.form:content>
-                        <sap.ui.core:Title text="{ProductsModel>ProductName}" id="title4"/>
-                        <ObjectNumber id="unitPrice" number="{ parts: [{path: 'ProductsModel>UnitPrice'}, {path: '/CurrencyCode'}], type: 'sap.ui.model.type.Currency', formatOptions: { showMeasure: false } }"/>
-                        <ObjectNumber id="number2" unit="{/CurrencyCode}"/>
-                        <Text id="text2" text="{ProductsModel>QuantityPerUnit}"/>
-                        <sap.ui.core:Title text="{i18n>currentStockValue}" id="title5"/>
-                        <Text id="text3" text="{ parts: [ {path: 'ProductsModel>UnitPrice'}, {path: 'ProductsModel>UnitsInStock'}, {path: '/CurrencyCode'} ], formatter: '.formatter.formatStockValue' }"/>
+
+                        <!-- Product Name Title -->
+                        <sap.ui.core:Title text="{ProductsModel>ProductName}" id="title4" />
+
+                        <!-- Stock on Hand -->
+                        <Label id="stockOnHand" text="{i18n>stockOnHand}" />
+                        <Text text="{ProductsModel>QuantityPerUnit}" id="text2" />
+
+                        <!-- Current Stock Value -->
+                        <Label id="currentStockValue" text="{i18n>currentStockValue}" />
+                        <Text text="{ 
+                            parts: [ 
+                                { path: 'ProductsModel>UnitPrice' }, 
+                                { path: 'ProductsModel>UnitsInStock' }, 
+                                { path: '/CurrencyCode' } 
+                            ], 
+                            formatter: '.formatter.formatStockValue' 
+                        }" id="text3" />
+
+                        <ObjectNumber id="currency" number="{ parts: [ {path: 'ProductsModel>UnitPrice'}, {path: '/CurrencyCode'} ], type: 'sap.ui.model.type.Currency', formatOptions: { showMeasure: true } }"/>
+
                     </sap.ui.layout.form:content>
                 </sap.ui.layout.form:SimpleForm>
+
             </content>
         </Panel>
 
@@ -72,28 +88,28 @@
             </headerToolbar>
 
             <content>
-                <sap.ui.layout.form:SimpleForm editable="true" layout="ResponsiveGridLayout" id="form4">
+                <sap.ui.layout.form:SimpleForm editable="true" layout="ResponsiveGridLayout" id="form4" liveChange="onProductIdChange">
                     <sap.ui.layout.form:content>
                         <Label text="Product Id" id="label4"/>
-                        <Input width="50%" value="{ProductsModel>/ProductId}" id="input4"/>
+                        <Input width="50%" value="{ProductsModel>/Products/0/ProductId}" id="input4" liveChange="onProductIdChange"/>
                         <Label text="Product Name" id="label5"/>
-                        <Input width="50%" value="{ProductsModel>/ProductName}" id="input5"/>
+                        <Input width="50%" value="{ProductsModel>/Products/0/ProductName}" id="input5" liveChange="onProductIdChange"/>
                         <Label text="Supplier Id" id="label6"/>
-                        <Input width="50%" value="{ProductsModel>/SupplierId}" id="input6"/>
+                        <Input width="50%" value="{ProductsModel>/Products/0/SupplierId}" id="input6" liveChange="onProductIdChange"/>
                         <Label text="Category Id" id="label7"/>
-                        <Input width="50%" value="{ProductsModel>/CategoryId}" id="input7"/>
+                        <Input width="50%" value="{ProductsModel>/Products/0/CategoryId}" id="input7" liveChange="onProductIdChange"/>
                         <Label text="Quantity Per Unit" id="label8"/>
-                        <Input width="50%" value="{ProductsModel>/QuantityPerUnit}" id="input8"/>
+                        <Input width="50%" value="{ProductsModel>/Products/0/QuantityPerUnit}" id="input8" liveChange="onProductIdChange"/>
                         <Label text="Unit Price" id="label9"/>
-                        <Input width="50%" value="{ProductsModel>/UnitPrice}" id="input9"/>
+                        <Input width="50%" value="{ProductsModel>/Products/0/UnitPrice}" id="input9" liveChange="onProductIdChange"/>
                         <Label text="Units In Stock" id="label10"/>
-                        <Input width="50%" value="{ProductsModel>/UnitsInStock}" id="input10"/>
+                        <Input width="50%" value="{ProductsModel>/Products/0/UnitsInStock}" id="input10" liveChange="onProductIdChange"/>
                         <Label text="Unit On Order" id="label11"/>
-                        <Input width="50%" value="{ProductsModel>/UnitOnOrder}" id="input11"/>
+                        <Input width="50%" value="{ProductsModel>/Products/0/UnitOnOrder}" id="input11" liveChange="onProductIdChange"/>
                         <Label text="Reorder Level" id="label12"/>
-                        <Input width="50%" value="{ProductsModel>/ReorderLevel}" id="input12"/>
+                        <Input width="50%" value="{ProductsModel>/Products/0/ReorderLevel}" id="input12" liveChange="onProductIdChange"/>
                         <Label text="Discontinued" id="label13"/>
-                        <Input width="50%" value="{ProductsModel>/Discontinued}" id="input13"/>
+                        <Input width="50%" value="{ProductsModel>/Products/0/Discontinued}" id="input13" liveChange="onProductIdChange"/>
                     </sap.ui.layout.form:content>
 
                 </sap.ui.layout.form:SimpleForm>
