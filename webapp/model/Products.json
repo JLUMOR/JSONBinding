@@ -1,0 +1,16 @@
+{
+	"Products": [
+	  {
+		"ProductID": "HT-1000",
+		"ProductName": "Notebook Basic 15",
+		"SupplierID": "SUP-001",
+		"CategoryID": "CAT-001",
+		"QuantityPerUnit": "10 PC",
+		"UnitPrice": 956,
+		"UnitsInStock": 25,
+		"UnitsOnOrder": 5,
+		"ReorderLevel": 10,
+		"Discontinued": false
+	  }
+	]
+}
